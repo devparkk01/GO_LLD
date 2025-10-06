@@ -18,3 +18,8 @@ type Reservation struct {
 	createdAt time.Time 
 	updatedAt time.Time 
 }
+
+func(r *Reservation) UpdateStatus(status ReservationStatus) {
+	r.status = status 
+	r.updatedAt = time.Now()
+}

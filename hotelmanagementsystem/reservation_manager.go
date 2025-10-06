@@ -261,3 +261,15 @@ func(rm *ReservationManager) ProcessPayment(reservationId string, paymentStrateg
 
 	return nil 
 }
+
+// Check in
+func(rm *ReservationManager)CheckIn(guestId string, reservationId string) error {
+	rm.mu.RLock()
+	reservation, ok := rm.reservations[reservationId]
+	rm.mu.RUnlock()
+	if !ok {
+		return fmt.Errorf("reservation %s does not exist", reservationId)
+	}
+	reservation.UpdateStatus(ReservationStatus_CheckedIn)
+	return nil
+}
