@@ -2,8 +2,9 @@ package main
 
 import "sync"
 
+// BalanceSheet represents how much money is owed between current and other users. 
 type BalanceSheet struct {
-	balances map[string]float64 // otherUserid -> netAmount (positive value means otherUser owes currentUser certainAmount )
+	balances map[string]float64 // otherUserid -> netAmountOwed (positive value means otherUser owes currentUser certainAmount, negative value means current user owes otherUser certainAmount)
 	mu       sync.RWMutex
 }
 

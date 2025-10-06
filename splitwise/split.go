@@ -1,6 +1,6 @@
 package main 
 
-
+// Split represents a single user's share in an expense. 
 type Split struct {
 	user *User  
 	amount float64
