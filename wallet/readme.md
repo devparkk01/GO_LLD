@@ -7,7 +7,7 @@ Load Money
 
 Transfer money
 - Should be able to transfer money between wallets
-- If send & receiver use same currency -> normal transfer
+- If sender & receiver use same currency -> normal transfer
 - If different currencies -> we must perform currency conversion before making transaction
 
 Balance check
