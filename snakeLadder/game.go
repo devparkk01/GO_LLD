@@ -40,21 +40,21 @@ func (g *Game) StartGame() {
 			diceNo := g.dice.Roll()  // roll the dice
 
 			// if the next position gets outside the board, then skip this player's chance
-			// fmt.Println("Printing nextPos for player ", nextPos, player.id )
-			if currentPos + diceNo > g.board.size {
+			fmt.Printf("Player %s rolled the dice and got %d\n", player.id, diceNo)
+			if currentPos+diceNo > g.board.size {
 				continue // move to the next player
-				// Keep the player at it's original position 
+				// Keep the player at it's original position
 			}
-			// if that's not the case 
-			nextPos := currentPos + diceNo 
-			fmt.Println("Printing nextPos for player ", nextPos, player.id )
-
+			// if that's not the case
+			nextPos := currentPos + diceNo
 			nextPos = g.board.GetNextPosition(nextPos)
 			// set this new position of this player
 			player.pos = nextPos
+
+			fmt.Printf("Next Position for player %s is %d\n", player.id, nextPos)
 			if nextPos == g.board.size {
-				fmt.Printf("Player %s won the game \n", player.id)
 				g.winner = player
+				fmt.Printf("Player %s won the game \n", player.id)
 				break
 			}
 		}

@@ -25,13 +25,13 @@ func (b *Board) AddObstacle(obstacle *Obstacle) {
 
 
 func (b *Board) GetNextPosition(currentPosition int) int {
-	cell := b.cells[currentPosition]
-	finalPosition := currentPosition
 	// if the cell has obstacle( maybe snake or ladder )
-	if cell.obstacle != nil {
-		finalPosition = cell.obstacle.dest 
+	cell := b.cells[currentPosition]
+	// we can have chain of ladders or snakes
+	for cell.obstacle != nil {
+		nextPos := cell.obstacle.dest
+		cell = b.cells[nextPos]
 	}
-
-	return finalPosition 
+	return cell.position
 }
 

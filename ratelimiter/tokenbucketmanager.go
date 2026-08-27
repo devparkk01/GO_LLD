@@ -43,7 +43,7 @@ func (t *TokenBucketManager) GetOrCreateIPTokenBucket(ip string) Limiter {
 	defer t.mu.Unlock()
 	ipBucket, exists := t.ipBuckets[ip]
 	if !exists {
-		ipBucket = NewTokenBucket("ip_token_bucket"+ip, t.ipCapacity, t.ipRefillRate)
+		ipBucket = NewTokenBucket("ip_token_bucket:"+ip, t.ipCapacity, t.ipRefillRate)
 		t.ipBuckets[ip] = ipBucket
 	}
 	return ipBucket
@@ -55,7 +55,7 @@ func (t *TokenBucketManager) GetOrCreateUserTokenBucket(user string) Limiter {
 	defer t.mu.Unlock()
 	userBucket, exists := t.userBuckets[user]
 	if !exists {
-		userBucket = NewTokenBucket("user_token_bucket"+user, t.userCapacity, t.userRefillRate)
+		userBucket = NewTokenBucket("user_token_bucket:"+user, t.userCapacity, t.userRefillRate)
 		t.userBuckets[user] = userBucket
 	}
 	return userBucket
@@ -67,7 +67,7 @@ func (t *TokenBucketManager) GetOrCreateEndpointTokenBucket(endpoint string) Lim
 	defer t.mu.Unlock()
 	endpointBucket, exists := t.endpointBuckets[endpoint]
 	if !exists {
-		endpointBucket = NewTokenBucket("endpoint_token_bucket"+endpoint, t.endpointCapacity, t.endpointRefillRate)
+		endpointBucket = NewTokenBucket("endpoint_token_bucket:"+endpoint, t.endpointCapacity, t.endpointRefillRate)
 		t.endpointBuckets[endpoint] = endpointBucket
 	}
 	return endpointBucket

@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 type ChannelHandler interface {
-	Send(*NotificationRequest) error
+	Send(req *NotificationRequest) error
 }
 
 type EmailHandler struct{}
@@ -17,7 +17,7 @@ func (e *EmailHandler) Send(req *NotificationRequest) error {
 	return nil
 }
 
-type SMSHandler struct {}
+type SMSHandler struct{}
 
 func (e *SMSHandler) Send(req *NotificationRequest) error {
 	payload := req.GetPayload().(*SMSPayload)
@@ -28,7 +28,7 @@ func (e *SMSHandler) Send(req *NotificationRequest) error {
 	return nil
 }
 
-type PushHandler struct {}
+type PushHandler struct{}
 
 func (e *PushHandler) Send(req *NotificationRequest) error {
 	payload := req.GetPayload().(*PushPayload)
